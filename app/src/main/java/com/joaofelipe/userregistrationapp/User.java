@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 @Entity
 public class User {
-    //Define o campo 'id' como chave primária da tabela e configuraa para ser geradpo automaticamente
+    //Define o campo 'id' como chave primária da tabela e configuraa para ser gerado automaticamente
     @PrimaryKey(autoGenerate = true)
     private int id;
 
