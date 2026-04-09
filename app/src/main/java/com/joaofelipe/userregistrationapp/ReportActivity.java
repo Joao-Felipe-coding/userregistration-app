@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import java.util.List;
+
 public class ReportActivity extends AppCompatActivity {
     private TextView textViewReport;
 
@@ -30,6 +32,20 @@ public class ReportActivity extends AppCompatActivity {
         Por padrão, ROOM proíbe isso. I correto seria fazer consultas em threads separadas.
     */
         UserDatabase db = Room.databaseBuilder(getApplication(), UserDatabase.class, "user-database").allowMainThreadsQueries().build();
+
+        // Obtém o objeto DAO (Data Access Object) que contém as queries SQL
+        UserDao userDao = db.userDao();
+        // Recupera todos os usuários salvos no BD e armazena numa lista
+        List<User> userList = UserDao.getAllUsers();
+        //StringBuilder: forma eficiente de construir uma String longa dentro de um laço (loop)
+        StringBuilder report = new StringBuilder();
+
+        //Loop "for-each" para percorrer cada objeto User dentro da lista reparada
+        for (User user : userList){
+            report.append("Nome: ").append(user.getNome()).append("\n").append("CPF: ").append(user.getCpf()).append("\n\n");
+        }
+        // Exibe o relatório final montado na TextView da tela
+        textViewReport.setText(report.toString());
     }
 
 
