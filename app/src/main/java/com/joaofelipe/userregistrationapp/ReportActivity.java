@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 public class ReportActivity extends AppCompatActivity {
     private TextView textViewReport;
@@ -16,12 +17,21 @@ public class ReportActivity extends AppCompatActivity {
         // Define o layout XML dessa tela de relatório
         setContentView(R.layout.activity_report);
         // Mapeamento do TextView do XML para o java
-        textViewReport = findViewById((R.id.textViewReport);
+        textViewReport = findViewById(R.id.textViewReport);
         // Encontra o botão e define o clique para voltar
         Button btnVoltar = findViewById(R.id.btnVoltar);
         // O botão de retorno utilizando expressão lamdda
         btnVoltar.setOnClickListener(v -> voltarParaCadastro());
+
+    /*
+        Conexão com o banco de dados
+        1 - Cria uma instância do banco de dados "user-database"
+        2 - .allowMainThreadQueries(): Serve para liberar operações de consulta feitas em threads da UI.
+        Por padrão, ROOM proíbe isso. I correto seria fazer consultas em threads separadas.
+    */
+        UserDatabase db = Room.databaseBuilder(getApplication(), UserDatabase.class, "user-database").allowMainThreadsQueries().build();
     }
+
 
     // Método responsável pela navegação entre as telas do app
 
