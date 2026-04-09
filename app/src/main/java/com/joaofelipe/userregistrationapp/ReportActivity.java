@@ -1,6 +1,7 @@
 package com.joaofelipe.userregistrationapp;
 
 // Importações de componentes de UI, inteções e a biblioteca ROOM
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -22,5 +23,13 @@ public class ReportActivity extends AppCompatActivity {
         btnVoltar.setOnClickListener(v -> voltarParaCadastro());
     }
 
+    // Método responsável pela navegação entre as telas do app
 
+    public void voltarParaCadastro(){
+        // Intenção para abrir a tela de cadastro
+        Intent intent = new Intent(ReportActivity.this, MainActivity.class);
+        startActivity(intent);
+        // Fecha a tela de relatório para não acumular na pilha de tarefas
+        finish();
+    }
 }
