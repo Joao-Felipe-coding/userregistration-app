@@ -44,4 +44,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    //Biblioteca principal
+    implementation ("andoridx.room:room-runtime:2.6.1")
+
+    // Processador de anotações do Room (necessário para gerar código automaticamente)
+    annotationProcessor ("androidx.room:room-compiler:2.6.1")
 }
